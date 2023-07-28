@@ -1,7 +1,7 @@
 # IMPORTANDDO AS BIBLIOTECAS
 from time import sleep 
 from random import randint, uniform, choice
-from pygame import *
+
 
 # placar contador 
 gol1s = list()
@@ -20,12 +20,38 @@ red = '\033[1;37;41m  \033[m'
 
 # times que vão jogar 
 
-# time 1
-time_1 = ['Gabriel', 'Luiz', 'Emanuel', 'Hernanes', 'Weverton', 'Deivid', 'Ismael']
-
-# time 2
-time_2 = ['Marcos', 'Renan', 'Mateus', 'Igor', 'Everton', 'Marquinhos', 'Malcom']
-
+#TIME 1
+time_1 = [] # NOME DOS JOGADORES
+over_geral_time1 = 0
+team_1 = {
+    'Gabriel': randint(45, 55), 
+    'Luiz': randint(45, 55), 
+    'Emanuel': randint(45, 55),
+    'Hernanes': randint(45, 55),
+    'Weverton': randint(45, 55), 
+    'Deivid': randint(45, 55), 
+    'Ismael': randint(45, 55)
+}
+for jogador, over in team_1.items():
+    time_1.append(jogador)
+    over_geral_time1 += over
+forca_total_time1 = (over_geral_time1 / len(time_1) / 10)
+# TIME 2
+time_2 = []
+over_geral_time2 = 0
+team_2 = {
+    'Marcos': randint(45, 55),
+    'Renan': randint(45, 55),
+    'Mateus': randint(45, 55),
+    'Igor': randint(45, 55),
+    'Everton': randint(45, 55),
+    'Marquinhos': randint(45, 55),
+    'Malcom': randint(45, 55)
+}
+for jogador, over in team_2.items():
+    time_2.append(jogador)
+    over_geral_time2 += over
+forca_total_time2 = (over_geral_time2 / len(time_2) / 10)
 # LANCES TIME 1
 def lance_gol_time1():
     while True:
@@ -85,7 +111,7 @@ def lance2():
                 print(f'\033[1;44;37m{player4} finaliza, e...\033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;44;37mO {player4} acerta a trave...\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;44;37mO jogador {player4} acerta a trave...\033[m (Minuto {m}°)'.center(80))
                 print(' ')
                 sleep(2)
                 chutes1.append(1)
@@ -107,12 +133,11 @@ def lance3():
                 sleep(3)
                 print(" ")
                 print(f'\033[1;44;37m Direto nas mãos do goleiro.\033[m (Minuto {m}°)'.center(80))
-                sleep(1)
+                sleep(2)
                 print(" ")
                 chutes1.append(1)
                 posse1.append(1)
                 chutes_gol1.append(1)
-                sleep(2)
                 break
 
 # LANCE TIME 2
@@ -224,42 +249,42 @@ print(' ')
 # LOOP que vai gerar o resultado da partida no primeiro tempo.
 
 for c in range(0, 45):
-    chutes_1 = uniform(0, 103) # Valor que vai gerar a finalização do time 1
-    chutes_2 = uniform(0, 103) # Valor que vai gerar a finalização do time 2
-    conf_gol1 = randint(0, 100) # Valor que vai confirmar o gol do time 1
-    conf_gol2 = randint(0, 100) # Valor que vai confirmar o gol do time 2
-    sleep(0.55)
-    cartao_time1 = randint(0, 102) # Valor para gerar cartão para o time 1
-    cartao_time2 = randint(0, 102) # Valor para gerar cartão para o time 2
+    chutes_1 = uniform(0, 100) # Valor que vai gerar a finalização do time 1
+    chutes_2 = uniform(0, 100) # Valor que vai gerar a finalização do time 2
+    sleep(0.55)                   # BÔNUS ALEATÓRIO
+    defesa_time1 = (uniform(0, 10) + uniform(0, 2.50)) # Valor que vai confirmar o gol do time 1
+    defesa_time2 = (uniform(0, 10) + uniform(0, 2.50)) # Valor que vai confirmar o gol do time 2
+    cartao_time1 = randint(0, 100) # Valor para gerar cartão para o time 1
+    cartao_time2 = randint(0, 100) # Valor para gerar cartão para o time 2
     min.append(1) # Contador de minutos iterando em uma lista fora do loop.
-    m = len(min)
-    if cartao_time1 > 101: # Condição cartão time 1
+    m = len(min) # Leitura de minutos toda vez que o Loop roda.
+    if cartao_time1 > 99: # Condição cartão time 1
         player_y1 = choice(time_1)
         print(f'\033[1;44;37mCartão amarelo para {player_y1}\033[m {cartao_y}'.center(80))
         print(' ') 
-    if cartao_time2 > 101: # Condição cartão time 1
+    if cartao_time2 > 99: # Condição cartão time 1
         player_y2 = choice(time_2)
         print(f'\033[1;37;41mCartão amarelo para {player_y2}\033[m {cartao_y}'.center(80))
         print(' ')
 
     # GERADOR DE LANCES TIME 1
-    if chutes_1 > 92.25 and conf_gol1 > 25: # Condição para gol do time 1
+    if chutes_1 >= 95 and defesa_time2 > forca_total_time1: # Condição para gol do time 1
         lance_gol_time1()
-    elif chutes_1 > 0 and chutes_1 < 5: # Condição para finalização para fora.
+    elif chutes_1 > 0 and chutes_1 < 10: # Condição para finalização para fora.
         lance1()
-    elif chutes_1 > 45.02 and chutes_1 < 55.03: # Finalização nas mãos do goleiro.
+    elif chutes_1 > 20 and chutes_1 < 30: # Finalização nas mãos do goleiro.
         lance3()
-    elif chutes_1 > 82.20 and chutes_1 < 92.20: # Finalização na trave.
+    elif chutes_1 >= 92 and chutes_1 < 95: # Finalização na trave.
         lance2()
 
     # GERADOR DE LANCES TIME 2.
-    if chutes_2 > 92.25 and conf_gol2 > 25:  # Condição para gol do time 2
+    if chutes_2 >= 95 and defesa_time1 > forca_total_time2:  # Condição para gol do time 2
         lance_gol_time2()
-    elif chutes_2 > 5 and chutes_2 < 10: # Condição para finalização para fora.
+    elif chutes_2 > 0 and chutes_2 < 10: # Condição para finalização para fora.
         lance4()
-    elif chutes_2 > 45.02 and chutes_2 < 55.03: # Finalização nas mãos do goleiro.
+    elif chutes_2 > 20 and chutes_2 < 30: # Finalização nas mãos do goleiro.
         lance6()
-    elif chutes_2 > 82.20 and chutes_2 < 92.20: # Finalizção na trave
+    elif chutes_2 >= 92 and chutes_2 < 95: # Finalização na trave
         lance5()
     else:
         print(f'\033[1;33;41mJOGO ROLANDO....\033[m (Minuto {m}°)'.center(80))
@@ -289,12 +314,12 @@ t = randint(44, 52)
 
 for c in range(0, t):
     sleep(0.50)
-    chutes_1 = uniform(0.0, 106.00) # Gerador de finalização do time 1
-    chutes_2 = uniform(0.0, 106.00) # Gerador de finalização do time 2
-    conf_gol1 = randint(0, 100) # Confirmação do gol do time 1
-    conf_gol2 = randint(0, 100) # Confirmação do gol do time 2
-    cartoes1 = uniform(0.0, 103.00) # Gerador de cartão para o time 1
-    cartoes2 = uniform(0.0, 103.00) # Gerador de cartão para o time 2
+    chutes_1 = uniform(0, 100) # Gerador de finalização do time 1
+    chutes_2 = uniform(0, 100) # Gerador de finalização do time 2
+    defesa_time1 = (uniform(0, 10) + uniform(0, 2.50)) # Confirmação do gol do time 1
+    defesa_time2 = (uniform(0, 10) + uniform(0, 2.50)) # Confirmação do gol do time 2
+    cartoes1 = uniform(0, 103) # Gerador de cartão para o time 1
+    cartoes2 = uniform(0, 103) # Gerador de cartão para o time 2
     cartao1 = choice(time_1) # Gerador de jogador que vai receber o cartão do time 1
     cartao2 = choice(time_2) # Gerador de jogador que vai receber o cartão do time 2
     min.append(1) # iteração fora do loop para contagem dos minutos.
@@ -311,23 +336,23 @@ for c in range(0, t):
         sleep(2)
 
     # GERADOR DE LANCES TIME 1
-    if chutes_1 > 98 and conf_gol1 > 50: # Condição para gol time 1.
+    if chutes_1 >= 95 and defesa_time2 > forca_total_time1: # Condição para gol time 1.
         lance_gol_time1()
     elif chutes_1 > 0 and chutes_1 < 15: # Condição de finalização desperdiçada.
         lance1()
-    elif chutes_1 > 86 and chutes_1 < 93: # Condição de finalização defendida pelo goleiro.
+    elif chutes_1 > 20 and chutes_1 < 35: # Condição de finalização defendida pelo goleiro.
         lance3()
-    elif chutes_1 > 93 and chutes_1 < 98: # Condição de finalização na trave. 
+    elif chutes_1 > 91 and chutes_1 < 95: # Condição de finalização na trave. 
         lance2()
 
     # GERADOR DE LANCES TIME 2
-    if chutes_2 > 98 and conf_gol2 > 50: # Condição para gol time 2.
+    if chutes_2 >= 95 and defesa_time1 > forca_total_time2: # Condição para gol time 2.
         lance_gol_time2()
-    elif chutes_2 > 15 and chutes_2 < 30: # Condição de finalização desperdiçada.
+    elif chutes_2 > 0 and chutes_2 < 15: # Condição de finalização desperdiçada.
         lance4()
-    elif chutes_2 > 86 and chutes_2 < 93: # Condição de finalização defendida pelo goleiro.
+    elif chutes_2 > 20 and chutes_2 < 35: # Condição de finalização defendida pelo goleiro.
         lance6()
-    elif chutes_2 > 93 and chutes_2 < 98: # Condição de finalização na trave. 
+    elif chutes_2 > 91 and chutes_2 < 95: # Condição de finalização na trave. 
         lance5()
     else:
         print(f'\033[1;33;41m JOGO ROLANDO.... \033[m (Minuto {m}°)'.center(80))
