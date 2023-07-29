@@ -53,28 +53,33 @@ for jogador, over in team_2.items():
     over_geral_time2 += over
 forca_total_time2 = (over_geral_time2 / len(time_2) / 10)
 # LANCES TIME 1
-def lance_gol_time1():
+def lance_gol_time1(): 
     while True:
             player1 = choice(time_1)
             player2 = choice(time_1)
             player3 = choice(time_1)
             player4 = choice(time_1)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;44;37mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;44;37m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player2} distribui para {player3} que aciona {player4}\033[m'.center(80))
+                print(f'\033[1;44;37m {player2} distribui para {player3} que aciona {player4} \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;44;37m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(" ")
-                print(f'\033[1;31;42mGOOLLLL, é do {s_time}\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;31;42m GOOLLLL, é do {s_time} \033[m (Minuto {m}°)'.center(80))
                 sleep(2)
                 print(" ")
-                gol1s.append(1)
-                chutes1.append(1)
-                posse1.append(1)
-                chutes_gol1.append(1)
-                break
+                if randint(0, 10) > 8 and uniform(0, 10) > forca_total_time1:
+                    print(f'\033[1;44;33m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
+                    sleep(2)
+                    break
+                else:
+                    gol1s.append(1)
+                    chutes1.append(1)
+                    posse1.append(1)
+                    chutes_gol1.append(1)
+                    break
 
 def lance1():
     while True:
@@ -83,14 +88,14 @@ def lance1():
             player3 = choice(time_1)
             player4 = choice(time_1)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;44;37mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;44;37m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;44;37m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;44;37m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;44;37mDesperdiça a chance o jogador {player4} do {s_time}\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;44;37m Desperdiça a chance o jogador {player4} do {s_time} \033[m (Minuto {m}°)'.center(80))
                 sleep(2)
                 print(' ')
                 chutes1.append(1)
@@ -104,14 +109,14 @@ def lance2():
             player3 = choice(time_1)
             player4 = choice(time_1)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;44;37mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;44;37m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;44;37m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;44;37m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;44;37mO jogador {player4} acerta a trave...\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;44;37m O jogador {player4} acerta a trave... \033[m (Minuto {m}°)'.center(80))
                 print(' ')
                 sleep(2)
                 chutes1.append(1)
@@ -125,11 +130,11 @@ def lance3():
             player3 = choice(time_1)
             player4 = choice(time_1)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;44;37mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;44;37m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;44;37m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;44;37m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;44;37m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(" ")
                 print(f'\033[1;44;37m Direto nas mãos do goleiro.\033[m (Minuto {m}°)'.center(80))
@@ -149,21 +154,26 @@ def lance_gol_time2():
             player3 = choice(time_2)
             player4 = choice(time_2)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;37;41mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;37;41m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;37;41m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;37;41m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;31;42mGOOLLLL, é do {time_adv}\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;31;42m GOOLLLL, é do {time_adv} \033[m (Minuto {m}°)'.center(80))
                 print(' ')
                 sleep(2)
-                gol2s.append(1)
-                chutes2.append(1)
-                posse2.append(1)
-                chutes_gol2.append(1)
-                break
+                if randint(0, 10) > 8 and uniform(0, 10) > forca_total_time2:
+                    print(f'\033[1;44;33m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
+                    sleep(2)
+                    break
+                else:
+                    gol2s.append(1)
+                    chutes2.append(1)
+                    posse2.append(1)
+                    chutes_gol2.append(1)
+                    break
 
 def lance4():
     while True:
@@ -172,14 +182,14 @@ def lance4():
             player3 = choice(time_2)
             player4 = choice(time_2)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;37;41mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;37;41m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;37;41m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;37;41m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;37;41mDesperdiça a chance o jogador {player4} do {time_adv} \033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;37;41m Desperdiça a chance o jogador {player4} do {time_adv} \033[m (Minuto {m}°)'.center(80))
                 print(' ')
                 sleep(2)
                 chutes2.append(1)
@@ -193,14 +203,14 @@ def lance5():
             player3 = choice(time_2)
             player4 = choice(time_2)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;37;41mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;37;41m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;37;41m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;37;41m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
-                print(f'\033[1;37;41mO jogador {player4} acerta a trave...\033[m (Minuto {m}°)'.center(80))
+                print(f'\033[1;37;41m O jogador {player4} acerta a trave... \033[m (Minuto {m}°)'.center(80))
                 print(' ')
                 sleep(2)
                 chutes2.append(1)
@@ -215,11 +225,11 @@ def lance6():
             player3 = choice(time_2)
             player4 = choice(time_2)
             if player1 != player2 != player3 != player4 != player1 != player2 != player3:
-                print(f'\033[1;37;41mrecebe a bola {player1}, que repassa para {player2}..\033[m'.center(80))
+                print(f'\033[1;37;41m recebe a bola {player1}, que repassa para {player2}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player2} distribui para {player3} que aciona {player4}..\033[m'.center(80))
+                print(f'\033[1;37;41m {player2} distribui para {player3} que aciona {player4}.. \033[m'.center(80))
                 sleep(2)
-                print(f'\033[1;37;41m{player4} finaliza, e...\033[m'.center(80))
+                print(f'\033[1;37;41m {player4} finaliza, e... \033[m'.center(80))
                 sleep(3)
                 print(' ')
                 print(f'\033[1;37;41m Direto nas mãos do goleiro.\033[m (Minuto {m}°)'.center(80))
