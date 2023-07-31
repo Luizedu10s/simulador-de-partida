@@ -24,33 +24,35 @@ red = '\033[1;37;41m  \033[m'
 time_1 = [] # NOME DOS JOGADORES
 over_geral_time1 = 0
 team_1 = {
-    'Gabriel': randint(40, 55), 
-    'Luiz': randint(40, 55), 
-    'Emanuel': randint(40, 55),
-    'Hernanes': randint(40, 55),
-    'Weverton': randint(40, 55), 
-    'Deivid': randint(40, 55), 
-    'Ismael': randint(40, 55),
+    'Gabriel': randint(50, 100), 
+    'Luiz': randint(50, 100), 
+    'Emanuel': randint(50, 100),
+    'Hernanes': randint(50, 100),
+    'Weverton': randint(50, 100), 
+    'Deivid': randint(50, 100), 
+    'Ismael': randint(50, 100),
 }
 for jogador, over in team_1.items():
     time_1.append(jogador)
     over_geral_time1 += over
+defesa_time1 = (uniform(0, 10) + uniform(0, 3)) # Valor que vai confirmar o gol do time 1
 forca_total_time1 = ((over_geral_time1 / len(time_1)) / 10)
 # TIME 2
 time_2 = []
 over_geral_time2 = 0
 team_2 = {
-    'Marcos': randint(45, 55),
-    'Renan': randint(45, 55),
-    'Mateus': randint(45, 55),
-    'Igor': randint(45, 55),
-    'Everton': randint(45, 55),
-    'Marquinhos': randint(45, 55),
-    'Malcom': randint(45, 55)
+    'Marcos': randint(50, 100),
+    'Renan': randint(50, 100),
+    'Mateus': randint(50, 100),
+    'Igor': randint(50, 100),
+    'Everton': randint(50, 100),
+    'Marquinhos': randint(50, 100),
+    'Malcom': randint(50, 100)
 }
 for jogador, over in team_2.items():
     time_2.append(jogador)
     over_geral_time2 += over
+defesa_time2 = (uniform(0, 10) + uniform(0, 3)) # Valor que vai confirmar o gol do time 2
 forca_total_time2 = ((over_geral_time2 / len(time_2)) / 10)
 # LANCES TIME 1
 def lance_gol_time1(): 
@@ -71,7 +73,7 @@ def lance_gol_time1():
                 sleep(2)
                 print(" ")
                 if randint(0, 10) > 8 and uniform(0, 10) > forca_total_time1:
-                    printSlow(f'\033[1;44;33m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
+                    printSlow(f'\033[1;31;43m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
                     sleep(2)
                     print(' ')
                     break
@@ -147,7 +149,6 @@ def lance3():
                 break
 
 # LANCE TIME 2
-
 def lance_gol_time2():
     while True:
             player1 = choice(time_2)
@@ -166,7 +167,7 @@ def lance_gol_time2():
                 print(' ')
                 sleep(2)
                 if randint(0, 10) > 8 and uniform(0, 10) > forca_total_time2:
-                    printSlow(f'\033[1;44;33m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
+                    printSlow(f'\033[1;31;43m Para ai, o var encontrou irregularidade no lance, lance inválido! \033[m'.center(80))
                     sleep(2)
                     print(' ')
                     break
@@ -246,13 +247,20 @@ def lance6():
 
 print(' ')
 print('-=-' * 20)
-s_time = str(input('\n\033[1;37;44mDigite o nome da sua equipe:\033[m '))
+s_time = str(input('\n\033[1;37;44m Digite o nome da sua equipe: \033[m '))
 print('-=-' * 20)
 print(' ')
 print('-=-' * 20)
-time_adv = str(input('\033[1;37;41mDigite o nome do time adversário:\033[m '))
+time_adv = str(input('\033[1;37;41m Digite o nome do time adversário: \033[m '))
 print(' ')
-sleep(0.85)
+printSlow(f'\033[1;34;47m TIME 1: {time_1} \033[m')
+print(f'\033[1;34;47m OVERAL MÉDIO {s_time} = {over_geral_time1 / len(time_1):.0f} \033[m')
+print(' ')
+sleep(5)
+printSlow(f'\033[1;34;47m TIME 2: {time_2} \033[m')
+printSlow(f'\033[1;34;47m OVERAL MÉDIO {time_adv} = {over_geral_time2 / len(time_2):.0f} \033[m')
+print(' ')
+sleep(5)
 print('\033[1;34;47m COMEÇA A PARTIDA... \033[m'.center(80))
 sleep(0.85)
 print(' ')
@@ -264,8 +272,6 @@ for c in range(0, 45):
     chutes_1 = uniform(0, 100) # Valor que vai gerar a finalização do time 1
     chutes_2 = uniform(0, 100) # Valor que vai gerar a finalização do time 2
     sleep(0.55)                   # BÔNUS ALEATÓRIO
-    defesa_time1 = (uniform(0, 10) + uniform(0, 2.50)) # Valor que vai confirmar o gol do time 1
-    defesa_time2 = (uniform(0, 10) + uniform(0, 2.50)) # Valor que vai confirmar o gol do time 2
     cartao_time1 = randint(0, 100) # Valor para gerar cartão para o time 1
     cartao_time2 = randint(0, 100) # Valor para gerar cartão para o time 2
     min.append(1) # Contador de minutos iterando em uma lista fora do loop.
@@ -297,7 +303,7 @@ for c in range(0, 45):
     elif chutes_2 >= 93 and chutes_2 < 95: # Finalização na trave
         lance5()
     else:
-        print(f'\033[1;33;41mJOGO ROLANDO....\033[m (Minuto {m}°)'.center(80))
+        print(f'\033[1;33;41m JOGO ROLANDO.... \033[m (Minuto {m}°)'.center(80))
         posse_1 = randint(0, 1) 
         if posse_1 == 0:
             posse1.append(1)
@@ -326,8 +332,8 @@ for c in range(0, t):
     sleep(0.50)
     chutes_1 = uniform(0, 100) # Gerador de finalização do time 1
     chutes_2 = uniform(0, 100) # Gerador de finalização do time 2
-    defesa_time1 = (uniform(0, 10) + uniform(0, 2.50)) # Confirmação do gol do time 1
-    defesa_time2 = (uniform(0, 10) + uniform(0, 2.50)) # Confirmação do gol do time 2
+    defesa_time1 = (uniform(0, 10) + uniform(0, 3)) # Confirmação do gol do time 1
+    defesa_time2 = (uniform(0, 10) + uniform(0, 3)) # Confirmação do gol do time 2
     cartoes1 = uniform(0, 103) # Gerador de cartão para o time 1
     cartoes2 = uniform(0, 103) # Gerador de cartão para o time 2
     cartao1 = choice(time_1) # Gerador de jogador que vai receber o cartão do time 1
@@ -369,7 +375,7 @@ for c in range(0, t):
         posse_1 = randint(0, 1)
         if posse_1 == 0:
             posse1.append(1)
-        elif posse_1 == 1:
+        else:
             posse2.append(1)
         print(' ')
 
@@ -387,33 +393,26 @@ precisao1__1 = (resultado1 / finalizacao1) * 100
 precisao2__2 = (resultado2 / finalizacao2) * 100
 posse_1 = len(posse1)
 posse_2 = len(posse2)
-posse__1 = (posse_1 / 90) * 100
-posse__2 = 100 - posse__1
+posse = len(posse1) + len(posse2)
+posse__1 = (posse_1 / posse) * 100
+posse__2 = (posse_2 / posse) * 100
 chutes1_1 = len(chutes_gol1)
 chutes2_2 = len(chutes_gol2)
 
 #  PRINT FINAL DE JOGO E ESTATISTICAS
 
 print(' ')
-print(' ')
 print('x' * 65)
 print(' ')
+print(f'\033[1;31;47m Placar: \033[m \033[1;37;41m {s_time} {resultado1} X {resultado2} {time_adv} \033[m'.center(90))
 print(' ')
-print(f'\033[1;31;47mplacar:\033[m \033[1;37;41m{s_time} {resultado1} X {resultado2} {time_adv}\033[m'.center(90))
+print(f'\033[1;31;47m Chutes: \033[m \033[1;37;41m {s_time} {finalizacao1} x {finalizacao2} {time_adv} \033[m'.center(90))
 print(' ')
+print(f'\033[1;31;47m Chutes a gol: \033[m \033[1;37;41m {s_time} {chutes1_1} x {chutes2_2} {time_adv} \033[m'.center(90))
 print(' ')
-print(f'\033[1;31;47mChutes:\033[m \033[1;37;41m{s_time} {finalizacao1} x {finalizacao2} {time_adv}\033[m'.center(90))
+print(f'\033[1;31;47m Precisão: \033[m \033[1;37;41m {s_time} {precisao1__1:.0f}% X {precisao2__2:.0f}% {time_adv} \033[m'.center(90))
 print(' ')
-print(' ')
-print(f'\033[1;31;47mCHUTES A GOL:\033[m \033[1;37;41m{s_time} {chutes1_1} x {chutes2_2} {time_adv}\033[m'.center(90))
-print(' ')
-print(' ')
-print(f'\033[1;31;47mPrecisão:\033[m \033[1;37;41m{s_time} {precisao1__1:.0f}% X {precisao2__2:.0f}% {time_adv}\033[m'.center(90))
-print(' ')
-print(' ')
-print(f'\033[1;31;47mPosse De bola:\033[m \033[1;37;41m{s_time} {posse__1:.0f}% x {posse__2:.0f}% {time_adv}\033[m'.center(90))
-print(' ')
+print(f'\033[1;31;47m Posse De bola: \033[m \033[1;37;41m {s_time} {posse__1:.0f}% x {posse__2:.0f}% {time_adv} \033[m'.center(90))
 print(' ')
 print('×' * 65)
-print(' ')
 print(' ')
